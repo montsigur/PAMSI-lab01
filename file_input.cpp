@@ -1,17 +1,46 @@
+// Wojciech Michałowski
+// nr 218705
+
 #include <iostream>
 #include <fstream>
+#include <string>
 using namespace std;
 
-int main() {
+void zapiszDoBin(const char* tab, int rozmiar) {
 
-  fstream F("binfile.bin", fstream::binary | fstream::out);
-
-  string s;
-  s = "string";
-
-  F.write((char*) &s, sizeof(s));
+  ostream F("inbin.bin");
+  char c = rozmiar + '0';
   
+  F.write(&c, 1);
+  F.write(tab, rozmiar);
+
   F.close();
+
+}
+
+void zapiszDoTxt(char* tab, int rozmiar) {
+
+  ostream F("intxt.txt");
+
+  F << rozmiar;
+
+  for(int i=0; i<rozmiar; i++)
+    F << " "<< tab[i];
+
+  F.close();
+}
+
+char* odczytZTxt(string nazwaPliku) {
+
+  istream F(nazwaPliku);
+
+  char* tab = F.getline();
+
+  
+}
+
+
+int main() {
 
   return 0;
   

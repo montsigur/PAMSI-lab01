@@ -45,14 +45,13 @@ void wyswietl(int** tab, int nWierszy, int mKolumn) {
 	cout << endl;
       
     }
-
 }
 
 int main() {
 
   srand(time(NULL));
 
-  int mKolumn, nWierszy, x;
+  int mKolumn, nWierszy, x, wybor = -1;
 
   cout << "Podaj ilosc wierszy: ";
   cin >> nWierszy;
@@ -60,18 +59,48 @@ int main() {
   cout << "Podaj ilosc kolumn: ";
   cin >> mKolumn;
 
-  cout << "Podaj gorna granice zakresu wartosci losowych: ";
-  cin >> x;
-
   int** tab = new int*[nWierszy];
   for (int i=0; i<nWierszy; i++)
     tab[i] = new int[mKolumn];
 
-  wypelnijLosowymi(tab, nWierszy, mKolumn, x);
+  while (wybor != 0) {
 
-  wyswietl(tab, nWierszy, mKolumn);
+    cout << endl << "\t################# MENU #################\n\
+\t1 - wypelnij tablice liczbami losowymi\n\
+\t2 - wyswietl zawartosc tablicy\n\
+\t3 - wyswietl wartosc maksymalna w tablicy\n\
+\t0 - wyjscie z programu\n\
+\tWybor: ";
 
-  cout << "Najwieksza liczba w tablicy: " << znajdzMaks(tab, nWierszy, mKolumn) << endl;;
+    cin >> wybor;
+    cout << endl;
+
+    switch (wybor) {
+
+    case 1:
+      cout << "Podaj gorna granice zakresu wartosci losowych: ";
+      cin >> x;
+      wypelnijLosowymi(tab, nWierszy, mKolumn, x);
+      cout << "Done." << endl;
+      break;
+
+    case 2:
+      wyswietl(tab, nWierszy, mKolumn);
+      break;
+
+    case 3:
+      cout << "Najwieksza liczba w tablicy: " << znajdzMaks(tab, nWierszy, mKolumn) << endl;
+      break;
+
+    case 0:
+      break;
+
+    default:
+      cout << "Nieznana opcja." << endl;
+      break;
+
+    }
+  }
   
   return 0;
 

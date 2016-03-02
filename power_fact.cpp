@@ -1,7 +1,8 @@
 #include <iostream>
+#include <cstdlib>
 using namespace std;
 
-int silnia(int n) {
+long int silnia(int n) {
 
   if (n == 0 || n == 1)
     return 1;
@@ -9,9 +10,11 @@ int silnia(int n) {
   else if (n > 1)
     return n * silnia(n-1);
 
-  else
-    return -1;
-  
+  else {
+    cout << "Blad, silnia z liczby ujemnej: ";
+    return 0;
+  }
+
 }
 
 double potega(int p, int w) {
@@ -29,7 +32,8 @@ double potega(int p, int w) {
 
 int main() {
 
-  int n, w;
+  long int n;
+  int w;
 
   cout << "Podaj pierwsza liczbe: ";
   cin >> n;
@@ -37,11 +41,11 @@ int main() {
   cout << "Podaj druga liczbe: ";
   cin >> w;
   
-  cout << n << "! = " << silnia(n) << endl;
-  cout << w << "! = " << silnia(w) << endl;
   cout << n << "^" << w << " = " << potega(n, w) << endl;
   cout << w << "^" << n << " = " << potega(w, n)<< endl;
-  
+  cout << n << "! = " << silnia(n) << endl;
+  cout << w << "! = " << silnia(w) << endl;  
+
   return 0;
 
 }
